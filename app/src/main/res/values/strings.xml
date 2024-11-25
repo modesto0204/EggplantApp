@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Eggplant</string>
+
+    <!--button-->
+    <string name="stage_button_confirm">CONFIRM</string>
+    <string name="stage_button_next">NEXT</string>
+    <string name="clear_button">CLEAR</string>
+
+    <!--text view-->
+    <string name="title">Set Lock Screen</string>
+    <string name="sub_title">Set Pattern</string>
+    <string name="initial_message_first_stage">Draw An Unlock Pattern</string>
+    <string name="initial_message_second_stage">Draw Pattern Again To Confirm</string>
+    <string name="started_message">Release Finger When Done</string>
+    <string name="success_message_first_stage">Pattern Recorded</string>
+    <string name="success_message_second_stage">Your New Unlock Pattern</string>
+    <string name="error_message_first_stage">Connect At Least 4 Dots!</string>
+    <string name="error_message_second_stage">Wrong Pattern!</string>
+
+    <!--dialog-->
+    <string name="alert_dialog_confirm_message">Your New Unlock Pattern Is Created!</string>
+    <string name="alert_dialog_positive_button">Okay!</string>
+
+    <string name="eggplant_scanner_string">EGGPLANT SCANNER</string>
+    <string name="pattern_prompt">Draw Your Pattern</string>
+    <string name="capture_prompt">CAPTURE</string>
+    <string name="upload_prompt">UPLOAD</string>
+    <string name="edibility_prompt">Hi there! Ready to check your eggplant\'s edibility? Snap a photo or upload one to get instant results!</string>
+</resources>
