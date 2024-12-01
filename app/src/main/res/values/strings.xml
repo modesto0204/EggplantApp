@@ -26,4 +26,5 @@
     <string name="capture_prompt">CAPTURE</string>
     <string name="upload_prompt">UPLOAD</string>
     <string name="edibility_prompt">Hi there! Ready to check your eggplant\'s edibility? Snap a photo or upload one to get instant results!</string>
+    <string name="return_prompt" />RETURN
 </resources>
