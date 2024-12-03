@@ -1,22 +1,22 @@
 package com.example.eggplant
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
-import android.os.Message
+import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.loading_interface)
+        setContentView(R.layout.activity_loading)
         val biometricManager = BiometricManager.from(this)
         when(biometricManager.canAuthenticate(BIOMETRIC_STRONG or DEVICE_CREDENTIAL)){
             BiometricManager.BIOMETRIC_SUCCESS -> {
@@ -43,7 +43,31 @@ class LoginActivity : AppCompatActivity() {
             object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
-                    showToast("Authentication Exit")
+                    showToast("Authentication Successful")
+                    val progressBar: ProgressBar = findViewById(R.id.progressBar)
+                    progressBar.max = 100
+
+                    val currentProgress = 100
+                    val animator = ObjectAnimator.ofInt(progressBar, "progress", currentProgress)
+                        .setDuration(2000)
+
+                    animator.addListener(object : Animator.AnimatorListener {
+                        override fun onAnimationStart(animation: Animator) {
+                        }
+                        override fun onAnimationEnd(animation: Animator) {
+                            // Navigate to the next activity
+                            val intent = Intent(this@LoginActivity, menu::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                        override fun onAnimationCancel(animation: Animator) {
+
+                        }
+                        override fun onAnimationRepeat(animation: Animator) {
+                        }
+                    })
+                    animator.start()
+
                 }
 
                 override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
@@ -69,7 +93,5 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showToast(message: String){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-
-
     }
 }

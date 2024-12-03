@@ -13,6 +13,21 @@
         android:theme="@style/Theme.Eggplant"
         tools:targetApi="35">
         <activity
+            android:name=".returncapture"
+            android:exported="false" />
+        <activity
+            android:name=".patternmodel.returncapture"
+            android:exported="false" />
+        <activity
+            android:name=".menu"
+            android:exported="false" />
+        <activity
+            android:name=".loading"
+            android:exported="false" />
+        <activity
+            android:name=".capture_upload"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -21,6 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
