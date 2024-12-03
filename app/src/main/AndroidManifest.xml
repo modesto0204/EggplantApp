@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Eggplant"
         tools:targetApi="35">
         <activity
+            android:name=".results"
+            android:exported="false" />
+        <activity
             android:name=".returncapture"
             android:exported="false" />
         <activity
