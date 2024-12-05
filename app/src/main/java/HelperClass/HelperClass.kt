@@ -1,3 +1,5 @@
+package HelperClass
+
 import android.content.Context
 import org.tensorflow.lite.Interpreter
 import java.nio.MappedByteBuffer
@@ -45,3 +47,5 @@ modelHelper.close()
 // Find the class with the highest confidence
 val predictedClass = predictions.indices.maxByOrNull { predictions[it] }
 println("Predicted Class: $predictedClass")
+
+
