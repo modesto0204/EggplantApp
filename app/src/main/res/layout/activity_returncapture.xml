@@ -8,7 +8,6 @@
     android:background="@drawable/background">
 
 
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="410dp"
@@ -18,14 +17,14 @@
         android:text="@string/eggplant_scanner_string"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
+        android:textSize="30sp"
         android:textStyle="bold"
-        android:textSize="27sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.096" />
 
     <ImageView
         android:id="@+id/imageView7"
@@ -135,11 +134,11 @@
         android:fontFamily="@font/oxanium"
         android:text="Please select your next action:"
         android:textColor="#FFFFFF"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="101dp"
-        tools:layout_editor_absoluteY="548dp" />
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="706dp" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -148,6 +147,6 @@
         app:srcCompat="@drawable/logo"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="82dp" />
+        tools:layout_editor_absoluteY="153dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
