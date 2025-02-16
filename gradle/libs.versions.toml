@@ -1,5 +1,7 @@
 [versions]
 agp = "8.7.2"
+cameraCore = "1.5.0"
+compiler = "4.15.1"
 kotlin = "1.9.24"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -11,12 +13,22 @@ activity = "1.9.3"
 constraintlayout = "2.2.0"
 runtimeAndroid = "1.7.5"
 biometricKtx = "1.4.0-alpha02"
+tensorflowLite = "2.12.0"
 tensorflowLiteSupport = "0.1.0"
 tensorflowLiteMetadata = "0.1.0"
 tensorflowLiteGpu = "2.3.0"
+tensorflowLiteVersion = "2.13.0"
+tensorflowTensorflowLite = "2.17.0"
 
 [libraries]
+androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "cameraCore" }
+androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "cameraCore" }
+androidx-camera-extensions = { module = "androidx.camera:camera-extensions", version.ref = "cameraCore" }
+androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "cameraCore" }
+androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "cameraCore" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "compiler" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -26,9 +38,12 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-runtime-android = { group = "androidx.compose.runtime", name = "runtime-android", version.ref = "runtimeAndroid" }
 androidx-biometric-ktx = { group = "androidx.biometric", name = "biometric-ktx", version.ref = "biometricKtx" }
+tensorflow-lite = { module = "org.tensorflow:tensorflow-lite", version.ref = "tensorflowLite" }
 tensorflow-lite-support = { group = "org.tensorflow", name = "tensorflow-lite-support", version.ref = "tensorflowLiteSupport" }
 tensorflow-lite-metadata = { group = "org.tensorflow", name = "tensorflow-lite-metadata", version.ref = "tensorflowLiteMetadata" }
 tensorflow-lite-gpu = { group = "org.tensorflow", name = "tensorflow-lite-gpu", version.ref = "tensorflowLiteGpu" }
+tensorflow-lite-v2130 = { module = "org.tensorflow:tensorflow-lite", version.ref = "tensorflowLiteVersion" }
+tensorflow-lite-v2170 = { module = "org.tensorflow:tensorflow-lite", version.ref = "tensorflowTensorflowLite" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

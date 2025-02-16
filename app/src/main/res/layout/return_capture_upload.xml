@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:background="@drawable/backgroundd">
 
 
 
@@ -14,7 +14,7 @@
         android:layout_height="40dp"
         android:background="@drawable/start_interface"
         android:fontFamily="@font/oxanium"
-        android:text="@string/eggplant_scanner_string"
+        android:text="@string/eggplant_string"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textStyle="bold"

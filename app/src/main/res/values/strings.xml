@@ -21,10 +21,21 @@
     <string name="alert_dialog_confirm_message">Your New Unlock Pattern Is Created!</string>
     <string name="alert_dialog_positive_button">Okay!</string>
 
-    <string name="eggplant_scanner_string">EGGPLANT SCANNER</string>
+    <string name="eggplant_string">EGGPLANT</string>
+    <string name="scanner_string">SCANNER</string>
     <string name="pattern_prompt">Draw Your Pattern</string>
     <string name="capture_prompt">CAPTURE</string>
     <string name="upload_prompt">UPLOAD</string>
+    <string name="recapture_prompt">RECAPTURE</string>
+    <string name="reupload_prompt">REUPLOAD</string>
+    <string name="edibility_level_prompt">Edibility Level:</string>
+    <string name="placeholder">PLACEHOLDER</string>
     <string name="edibility_prompt">Hi there! Ready to check your eggplant\'s edibility? Snap a photo or upload one to get instant results!</string>
+    <string name="optimal_description">The scanned image shows optimal edibility,\n with no visible signs of spoilage like discoloration,\n texture changes, or decay. The eggplant meets\n the highest standards for freshness and safety,\n making it ideal for consumption.</string>
+    <string name="acceptable_description">The scanned image shows acceptable edibility,\n with slight imperfections like minor soft spots or\n faint discoloration. The eggplant remains safe to eat\n and retains good quality, making it suitable\n for most culinary preparations.</string>
+    <string name="moderate_description">The scanned image shows moderate edibility,\n with visible signs of aging such as dark spots,\n soft patches, or mild shriveling. The eggplant is still\n consumable with caution, but trimming or selective\n use may be necessary.</string>
+    <string name="unsafe_description">The scanned image shows unsafe edibility,\n with clear signs of spoilage like mold, extensive\n decay, or foul odor. The eggplant poses a health\n risk and does not meet safety standards, so it\n should be discarded immediately.</string>
+    <string name="not_eggplant_description">That\'s not an eggplant, lil bro.\n Please try again with an image\n of an eggplant.</string>
     <string name="return_prompt" />RETURN
+
 </resources>

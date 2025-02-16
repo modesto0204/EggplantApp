@@ -40,7 +40,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -51,8 +50,17 @@ dependencies {
     implementation(libs.tensorflow.lite.support)
     implementation(libs.tensorflow.lite.metadata)
     implementation(libs.tensorflow.lite.gpu)
+    implementation (libs.tensorflow.lite.v2170)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation (libs.tensorflow.lite)
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
 
+    val camerax_version = "1.3.0-rc01" // Replace with the desired CameraX version
+    implementation("androidx.camera:camera-core:${camerax_version}")
+    implementation("androidx.camera:camera-camera2:${camerax_version}")
+    implementation("androidx.camera:camera-lifecycle:${camerax_version}")
+    implementation("androidx.camera:camera-view:${camerax_version}")
 }
