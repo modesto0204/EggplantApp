@@ -1,11 +1,14 @@
 package com.example.eggplant
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Canvas
 import android.media.Image
 import android.net.Uri
 import android.os.Bundle
@@ -23,6 +26,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
@@ -31,6 +35,9 @@ import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.channels.FileChannel
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class results : ComponentActivity() {
 
@@ -88,18 +95,19 @@ class results : ComponentActivity() {
             autoClassify(it)
         }
 
+        requestStoragePermissions()
+        // Screenshot Button Report summary
         saveimageButton.setOnClickListener {
             selectedBitmap?.let { bitmap ->
                 Toast.makeText(this, "Saving Image", Toast.LENGTH_SHORT).show()
                 saveImageToGallery(bitmap)
             } ?: Toast.makeText(this, "No image to save", Toast.LENGTH_SHORT).show()
+            captureScreenshot()
         }
 
         backimagebutton.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
-
-
 
         recaptureButton.setOnClickListener {
             // Navigate back to CameraActivity
@@ -137,7 +145,25 @@ class results : ComponentActivity() {
             finish() // Close the current activity to refresh
         }
     }
+    private fun captureScreenshot() {
+        val rootView = window.decorView.rootView
+        val bitmap = Bitmap.createBitmap(rootView.width, rootView.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        rootView.draw(canvas)
 
+        saveImageToGallery(bitmap)
+    }
+    private fun requestStoragePermissions() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+    }
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (!isGranted) {
+                Toast.makeText(this, "Storage permission is required to save screenshots", Toast.LENGTH_LONG).show()
+            }
+        }
     private fun saveImageToGallery(bitmap: Bitmap) {
         val filename = "IMG_${System.currentTimeMillis()}.jpg"
         val values = ContentValues().apply {
@@ -222,4 +248,5 @@ class results : ComponentActivity() {
         val modelByteBuffer = fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
         interpreter = Interpreter(modelByteBuffer) // Pass the ByteBuffer to the Interpreter
     }
+
 }
