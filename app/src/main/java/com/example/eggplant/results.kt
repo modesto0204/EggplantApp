@@ -3,6 +3,9 @@ package com.example.eggplant
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -11,6 +14,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.media.Image
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -26,10 +30,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import org.tensorflow.lite.Interpreter
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.nio.ByteBuffer
@@ -79,12 +86,18 @@ class results : ComponentActivity() {
         if (imagePath != null) {
             // Load captured image
             val capturedBitmap = BitmapFactory.decodeFile(imagePath)
-            Glide.with(this).load(imagePath).into(selectedImageView)
+            Glide.with(this)
+                .load(imagePath)
+                .transform(RoundedCorners(dpToPx(30))) // Apply rounded corners
+                .into(selectedImageView)
             selectedBitmap = capturedBitmap
         } else if (imageUri != null) {
             // Load uploaded image
             val uri = Uri.parse(imageUri)
-            Glide.with(this).load(uri).into(selectedImageView)
+            Glide.with(this)
+                .load(uri)
+                .transform(RoundedCorners(dpToPx(30))) // Apply rounded corners
+                .into(selectedImageView)
 
             val inputStream = contentResolver.openInputStream(uri)
             selectedBitmap = BitmapFactory.decodeStream(inputStream)
@@ -145,13 +158,37 @@ class results : ComponentActivity() {
             finish() // Close the current activity to refresh
         }
     }
+
+    fun dpToPx(dp: Int): Int {
+        return (dp * resources.displayMetrics.density).toInt()
+    }
+
     private fun captureScreenshot() {
         val rootView = window.decorView.rootView
-        val bitmap = Bitmap.createBitmap(rootView.width, rootView.height, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(bitmap)
+        val backButton: ImageButton = findViewById(R.id.backimagebutton)
+        val saveButton: ImageButton = findViewById(R.id.saveimagebutton) // Update ID if needed
+
+        // Hide buttons before capturing
+        backButton.visibility = View.INVISIBLE
+        saveButton.visibility = View.INVISIBLE
+
+        // Create a full-screen bitmap
+        val fullBitmap = Bitmap.createBitmap(rootView.width, rootView.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(fullBitmap)
         rootView.draw(canvas)
 
-        saveImageToGallery(bitmap)
+        // Restore button visibility
+        backButton.visibility = View.VISIBLE
+        saveButton.visibility = View.VISIBLE
+
+        // Define the cropped height (3/4 of the screen)
+        val croppedHeight = (fullBitmap.height * 0.77).toInt()
+
+        // Crop the bitmap from the top
+        val croppedBitmap = Bitmap.createBitmap(fullBitmap, 0, 0, fullBitmap.width, croppedHeight)
+
+        // Save the cropped image
+        saveImageToGallery(croppedBitmap)
     }
     private fun requestStoragePermissions() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -178,10 +215,52 @@ class results : ComponentActivity() {
             contentResolver.openOutputStream(it)?.use { outputStream ->
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
                 Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show()
+
+                // Show notification with intent to open gallery
+                showImageSavedNotification(it)
             }
         } ?: run {
             Toast.makeText(this, "Failed to save image", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun showImageSavedNotification(imageUri: Uri) {
+        val channelId = "image_saved_channel"
+        val notificationId = 1
+
+        // Create an intent to open the saved image in the gallery
+        val openImageIntent = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(imageUri, "image/*")
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+
+        val pendingIntent = PendingIntent.getActivity(
+            this, 0, openImageIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        // Create notification channel (for Android 8.0+)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId, "Image Saved", NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                description = "Notifies when an image is successfully saved"
+            }
+
+            val notificationManager = getSystemService(NotificationManager::class.java)
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Build and show the notification
+        val notification = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.drawable.eggplant) // Change to your app's icon
+            .setContentTitle("Image Saved")
+            .setContentText("Tap to view in gallery")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+            .build()
+
+        NotificationManagerCompat.from(this).notify(notificationId, notification)
     }
 
     // Convert the bitmap to ByteBuffer

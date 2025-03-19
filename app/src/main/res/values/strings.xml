@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Eggplant</string>
+    <string name="app_name">Eggplant Scanner</string>
 
     <!--button-->
     <string name="stage_button_confirm">CONFIRM</string>
@@ -35,7 +35,7 @@
     <string name="acceptable_description">The scanned image shows acceptable edibility,\n with slight imperfections like minor soft spots or\n faint discoloration. The eggplant remains safe to eat\n and retains good quality, making it suitable\n for most culinary preparations.</string>
     <string name="moderate_description">The scanned image shows moderate edibility,\n with visible signs of aging such as dark spots,\n soft patches, or mild shriveling. The eggplant is still\n consumable with caution, but trimming or selective\n use may be necessary.</string>
     <string name="unsafe_description">The scanned image shows unsafe edibility,\n with clear signs of spoilage like mold, extensive\n decay, or foul odor. The eggplant poses a health\n risk and does not meet safety standards, so it\n should be discarded immediately.</string>
-    <string name="not_eggplant_description">That\'s not an eggplant, lil bro.\n Please try again with an image\n of an eggplant.</string>
+    <string name="not_eggplant_description">That\'s not an eggplant.\n Please try again with an image\n of an eggplant.</string>
     <string name="return_prompt" />RETURN
 
 </resources>
