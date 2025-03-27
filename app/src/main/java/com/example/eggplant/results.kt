@@ -7,6 +7,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -18,6 +19,8 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.provider.MediaStore
 import android.view.View
 import android.widget.Button
@@ -261,7 +264,24 @@ class results : ComponentActivity() {
             .build()
 
         NotificationManagerCompat.from(this).notify(notificationId, notification)
+
+        triggerVibration(this)
     }
+
+    private fun triggerVibration(context: Context) {
+        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+
+        // Check if the device supports vibration
+        if (vibrator.hasVibrator()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val vibrationEffect = VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE)
+                vibrator.vibrate(vibrationEffect)
+            } else {
+                vibrator.vibrate(500) // Vibrate for 500 milliseconds
+            }
+        }
+    }
+
 
     // Convert the bitmap to ByteBuffer
     private fun convertBitmapToByteBuffer(bitmap: Bitmap): ByteBuffer {
