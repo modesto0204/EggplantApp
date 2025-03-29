@@ -180,5 +180,30 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.72" />
 
+    <ImageButton
+        android:id="@+id/infoimageButton"
+        android:layout_width="34dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="28dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/guideline13"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="@+id/guideline12"
+        app:srcCompat="@drawable/info_icon" />
+
+    <ImageView
+        android:id="@+id/promptImageView"
+        android:layout_width="102dp"
+        android:layout_height="149dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline14"
+        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="@+id/guideline11"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/copy_of_neutral_minimal_simple_elegant_quote_instagram_post_removebg_preview" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

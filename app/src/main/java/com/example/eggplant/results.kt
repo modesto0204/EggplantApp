@@ -22,6 +22,7 @@ import android.os.Looper
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.provider.MediaStore
+import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
@@ -57,6 +58,7 @@ class results : ComponentActivity() {
     private lateinit var textViewEdibilityLevel: TextView
     private var selectedBitmap: Bitmap? = null
 
+    @SuppressLint("ClickableViewAccessibility", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -149,6 +151,29 @@ class results : ComponentActivity() {
             backimagebutton.setImageResource(R.drawable.back)
             saveimagebutton.setImageResource(R.drawable.save)
         }, 300)
+
+        val infoButton = findViewById<ImageButton>(R.id.resultsinfoImageButton)
+        val promptImage = findViewById<ImageView>(R.id.imageView3)
+        val prompttext = findViewById<TextView>(R.id.prompttext)
+
+        // Initially, hide the prompt
+        promptImage.visibility = View.INVISIBLE
+
+        infoButton.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    // Show prompt when button is pressed
+                    promptImage.visibility = View.VISIBLE
+                    prompttext.visibility = View.VISIBLE
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    // Hide prompt when button is released
+                    promptImage.visibility = View.INVISIBLE
+                    prompttext.visibility = View.INVISIBLE
+                }
+            }
+            true
+        }
     }
 
     // Handle the result of the gallery selection

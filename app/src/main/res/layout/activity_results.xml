@@ -347,5 +347,47 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.85" />
 
+    <ImageButton
+        android:id="@+id/resultsinfoImageButton"
+        android:layout_width="34dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="8dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:scaleType="fitCenter"
+        android:src="@drawable/info_icon"
+        app:layout_constraintEnd_toStartOf="@+id/guideline22"
+        app:layout_constraintHorizontal_bias="0.037"
+        app:layout_constraintStart_toStartOf="@+id/guideline18"
+        app:layout_constraintTop_toTopOf="@+id/guideline29" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="260dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/resultsrectangle"
+        app:layout_constraintEnd_toStartOf="@+id/guideline27"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="@+id/guideline29" />
+
+    <TextView
+        android:id="@+id/prompttext"
+        android:layout_width="200dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/poppinsbold"
+        android:scaleType="fitCenter"
+        android:text="@string/result_prompt"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:visibility="invisible"
+        android:textSize="6sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline27"
+        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintStart_toStartOf="@+id/guideline18"
+        app:layout_constraintTop_toTopOf="@+id/guideline29" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
