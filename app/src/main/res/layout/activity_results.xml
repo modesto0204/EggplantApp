@@ -19,6 +19,18 @@
         app:layout_constraintStart_toStartOf="@id/guideline21"
         app:srcCompat="@drawable/rectangle" />
 
+    <ImageView
+        android:id="@+id/notaneggplantlabelimagview"
+        android:layout_width="365dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/guideline23"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/red_rectangle" />
+
     <TextView
         android:id="@+id/textViewEdibilityLevel2"
         android:layout_width="wrap_content"
@@ -147,6 +159,17 @@
         app:layout_constraintStart_toStartOf="@id/guideline25"
         app:layout_constraintTop_toTopOf="@id/guideline23"
         app:srcCompat="@drawable/rectangle2"/>
+
+    <ImageView
+        android:id="@+id/notaneggplantdescriptionimageview"
+        android:layout_width="330dp"
+        android:layout_height="175dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.641"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline23"
+        app:srcCompat="@drawable/red_rectangle2" />
 
     <TextView
         android:id="@+id/optimalplaceholder"
