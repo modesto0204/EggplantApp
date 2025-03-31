@@ -323,6 +323,8 @@ class results : ComponentActivity() {
         return buffer
     }
 
+
+
     private fun autoClassify(bitmap: Bitmap) {
         val scaledBitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
         val byteBuffer = convertBitmapToByteBuffer(scaledBitmap)
@@ -359,7 +361,35 @@ class results : ComponentActivity() {
             }
             else -> "Unable to determine the edibility of this item." // Default case
         }
+
+        //updateBackground(result)
     }
+
+    /*private fun updateBackground(result: String) {
+        // Get references to the default and red background drawables
+        val defaultImageView: ImageView = findViewById(R.id.descriptionimageview)
+        val defaultLabelImageView: ImageView = findViewById(R.id.labelimagview)
+        val redImageView: ImageView = findViewById(R.id.notaneggplantdescriptionimageview)
+        val redLabelImageView: ImageView = findViewById(R.id.notaneggplantlabelimagview)
+
+        // Hide all images initially
+        listOf(
+            defaultImageView, defaultLabelImageView,
+            redImageView, redLabelImageView
+        ).forEach { it.visibility = View.GONE }
+
+        // Show the correct drawable based on the result
+        if (result == "Not an Eggplant") {
+            // Show the red background if the result is "Not an Eggplant"
+            redImageView.visibility = View.VISIBLE
+            redLabelImageView.visibility = View.VISIBLE
+        } else {
+            // Show the default background for all other results
+            defaultImageView.visibility = View.VISIBLE
+            defaultLabelImageView.visibility = View.VISIBLE
+        }
+    }*/
+
 
     private fun loadModel() {
         // Load the model file as a MappedByteBuffer
