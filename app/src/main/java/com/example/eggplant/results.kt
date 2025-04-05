@@ -342,6 +342,8 @@ class results : ComponentActivity() {
         val moderateplaceholder: TextView = findViewById(R.id.moderateplaceholder)
         val unsafeplaceholder: TextView = findViewById(R.id.unsafeplaceholder)
         val notaneggplantplaceholder: TextView = findViewById(R.id.notaneggplantplaceholder)
+        val notaneggplantlabelimagview: ImageView = findViewById(R.id.notaneggplantlabelimagview)
+        val notaneggplantdescriptionimageview: ImageView = findViewById(R.id.notaneggplantdescriptionimageview)
 
         val description = when (result) {
             "Optimal" -> {
@@ -362,34 +364,16 @@ class results : ComponentActivity() {
             else -> "Unable to determine the edibility of this item." // Default case
         }
 
-        //updateBackground(result)
-    }
-
-    /*private fun updateBackground(result: String) {
-        // Get references to the default and red background drawables
-        val defaultImageView: ImageView = findViewById(R.id.descriptionimageview)
-        val defaultLabelImageView: ImageView = findViewById(R.id.labelimagview)
-        val redImageView: ImageView = findViewById(R.id.notaneggplantdescriptionimageview)
-        val redLabelImageView: ImageView = findViewById(R.id.notaneggplantlabelimagview)
-
-        // Hide all images initially
-        listOf(
-            defaultImageView, defaultLabelImageView,
-            redImageView, redLabelImageView
-        ).forEach { it.visibility = View.GONE }
-
-        // Show the correct drawable based on the result
         if (result == "Not an Eggplant") {
-            // Show the red background if the result is "Not an Eggplant"
-            redImageView.visibility = View.VISIBLE
-            redLabelImageView.visibility = View.VISIBLE
-        } else {
-            // Show the default background for all other results
-            defaultImageView.visibility = View.VISIBLE
-            defaultLabelImageView.visibility = View.VISIBLE
-        }
-    }*/
+            notaneggplantlabelimagview.visibility = View.VISIBLE
+            notaneggplantdescriptionimageview.visibility = View.VISIBLE
 
+        } else {
+            notaneggplantlabelimagview.visibility = View.INVISIBLE
+            notaneggplantdescriptionimageview.visibility = View.INVISIBLE
+
+        }
+    }
 
     private fun loadModel() {
         // Load the model file as a MappedByteBuffer
