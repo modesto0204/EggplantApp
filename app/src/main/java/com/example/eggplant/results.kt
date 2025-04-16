@@ -21,6 +21,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.text.Layout
 import android.provider.MediaStore
 import android.view.MotionEvent
 import android.view.View
