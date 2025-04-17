@@ -30,7 +30,7 @@
     <string name="reupload_prompt">REUPLOAD</string>
     <string name="edibility_level_prompt">Edibility Level:</string>
     <string name="placeholder">PLACEHOLDER</string>
-    <string name="result_prompt">Edibility check complete!\n Recapture or reupload to \ncheck again, or save and go back.</string>
+    <string name="result_prompt">Edibility check complete! Recapture or reupload to check again, or save and go back.</string>
     <string name="edibility_prompt">Hi there! Ready to check your eggplant\'s edibility? Snap a photo or upload one to get instant results!</string>
     <string name="optimal_description">The scanned image shows optimal edibility, with no visible signs of spoilage like discoloration, texture changes, or decay. The eggplant meets the highest standards for freshness and safety, making it ideal for consumption.</string>
     <string name="acceptable_description">The scanned image shows acceptable edibility, with slight imperfections like minor soft spots or faint discoloration. The eggplant remains safe to eat and retains good quality, making it suitable for most culinary preparations.</string>

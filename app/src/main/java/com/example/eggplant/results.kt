@@ -342,6 +342,7 @@ class results : ComponentActivity() {
         val acceptableplaceholder: TextView = findViewById(R.id.acceptableplaceholder)
         val moderateplaceholder: TextView = findViewById(R.id.moderateplaceholder)
         val unsafeplaceholder: TextView = findViewById(R.id.unsafeplaceholder)
+        val rectangle: ImageView = findViewById(R.id.labelimagview)
         val notaneggplantplaceholder: TextView = findViewById(R.id.notaneggplantplaceholder)
         val notaneggplantlabelimagview: ImageView = findViewById(R.id.notaneggplantlabelimagview)
         val notaneggplantdescriptionimageview: ImageView = findViewById(R.id.notaneggplantdescriptionimageview)
@@ -366,6 +367,7 @@ class results : ComponentActivity() {
         }
 
         if (result == "Not an Eggplant") {
+            rectangle.visibility = View.INVISIBLE
             notaneggplantlabelimagview.visibility = View.VISIBLE
             notaneggplantdescriptionimageview.visibility = View.VISIBLE
 
